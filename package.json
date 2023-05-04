@@ -1,5 +1,5 @@
 {
-  "name": "vite-react-typescript-eslint-prettier",
+  "name": "react-weather",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -13,10 +13,20 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@mantine/form": "^6.0.10",
+    "@mantine/notifications": "^6.0.10",
+    "@tanstack/react-query": "^4.29.5",
+    "axios": "^1.4.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.8.0",
+    "react-router-dom": "^6.11.0"
   },
   "devDependencies": {
+    "@emotion/react": "^11.10.8",
+    "@mantine/core": "^6.0.10",
+    "@mantine/hooks": "^6.0.10",
+    "@tanstack/eslint-plugin-query": "^4.29.4",
     "@types/node": "^18.15.12",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",

@@ -1,90 +1,43 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import '@/App.css'
+import { RouterProvider } from 'react-router-dom'
+import { router } from '@/router'
+import { MantineProvider, ColorSchemeProvider } from '@mantine/core'
+import { Notifications } from '@mantine/notifications'
+import { QueryClientProvider } from '@tanstack/react-query'
+import { queryClient } from '@/libs/tanstack-query'
+import ErrorBoundary from './features/ErrorBoundry'
+import '@/styles/index.css'
+import { theme } from '@/styles/mantine-theme'
 
-interface ReferenceConfig {
-  id: string
-  label: string
-  link: string
-}
+import type { ColorScheme } from '@mantine/core'
 
-const referenceConfig: ReferenceConfig[] = [
-  {
-    id: 'vite',
-    label: 'Vite',
-    link: 'https://vitejs.dev/',
-  },
-  {
-    id: 'react',
-    label: 'React',
-    link: 'https://react.dev/',
-  },
-  {
-    id: 'typescript',
-    label: 'TypeScript',
-    link: 'https://www.typescriptlang.org/',
-  },
-  {
-    id: 'eslint',
-    label: 'ESLint',
-    link: 'https://eslint.org/',
-  },
-  {
-    id: 'prettier',
-    label: 'Prettier',
-    link: 'https://prettier.io/',
-  },
-]
+export default function App() {
+  const [colorScheme, setColorScheme] = useState<ColorScheme>('dark')
 
-function App() {
-  const [count, setCount] = useState(0)
+  function toggleColorScheme(value?: ColorScheme) {
+    setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'))
+  }
 
   return (
-    <>
-      <div className='logo-block'>
-        <a
-          href='https://vitejs.dev'
-          target='_blank'
-        >
-          <img
-            src={viteLogo}
-            className='logo'
-            alt='Vite logo'
-          />
-        </a>
-        <div>X</div>
-        <a
-          href='https://react.dev'
-          target='_blank'
-        >
-          <img
-            src={reactLogo}
-            className='logo react'
-            alt='React logo'
-          />
-        </a>
-      </div>
-      <h1>Vite + React + TypeScript + Eslint + Prettier</h1>
-      <div className='card'>
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-      </div>
-
-      <div className='reference-block'>
-        {referenceConfig.map((item: ReferenceConfig) => (
-          <a
-            key={item.id}
-            href={item.link}
-            target='_blank'
-          >
-            {item.label}
-          </a>
-        ))}
-      </div>
-    </>
+    <ColorSchemeProvider
+      colorScheme={colorScheme}
+      toggleColorScheme={toggleColorScheme}
+    >
+      <MantineProvider
+        theme={{
+          colorScheme,
+          ...theme,
+        }}
+        withGlobalStyles
+        withNormalizeCSS
+      >
+        <QueryClientProvider client={queryClient}>
+          <Notifications />
+          <ErrorBoundary>
+            <RouterProvider router={router} />
+          </ErrorBoundary>
+        </QueryClientProvider>
+      </MantineProvider>
+    </ColorSchemeProvider>
   )
 }
-
-export default App
