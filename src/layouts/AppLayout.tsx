@@ -1,7 +1,7 @@
 import { Suspense } from 'react'
 import { Outlet } from 'react-router-dom'
 import { AppShell, Box } from '@mantine/core'
-import MemorizedHeaderContainer from '@/components/header/HeaderContainer'
+import HeaderContainer from '@/components/header/HeaderContainer'
 import SuspenseFallback from '@/components/SuspenseFallback'
 
 function AppLayout() {
@@ -9,7 +9,7 @@ function AppLayout() {
   return (
     <AppShell
       padding='xs'
-      header={<MemorizedHeaderContainer />}
+      header={<HeaderContainer />}
     >
       <Box
         w={{ base: '100%', sm: '70%' }}

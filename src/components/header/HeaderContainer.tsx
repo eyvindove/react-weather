@@ -2,11 +2,11 @@ import { memo } from 'react'
 import { Center, Header, Group } from '@mantine/core'
 import ColorThemeToggler from './ColorThemeToggler'
 
-function HeaderContainer() {
+const HeaderContainer = memo(function HeaderContainer() {
   return (
     <Header
       height={40}
-      px='md'
+      px={{ base: 'xs', sm: 'md' }}
     >
       <Group
         h='100%'
@@ -18,8 +18,6 @@ function HeaderContainer() {
       </Group>
     </Header>
   )
-}
+})
 
-const MemorizedHeaderContainer = memo(HeaderContainer)
-
-export default MemorizedHeaderContainer
+export default HeaderContainer

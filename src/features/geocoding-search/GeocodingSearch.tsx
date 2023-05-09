@@ -6,8 +6,8 @@ import { notifications } from '@mantine/notifications'
 import { useQuery } from '@tanstack/react-query'
 import { GetDirectGeocoding } from './services'
 import { FcSearch } from 'react-icons/fc'
-import MemorizedFavoriteList from '../favorite-list/FavoriteList'
-import MemorizedDataDeclaration from '@/components/DataDeclaration'
+import FavoriteList from '../favorite-list/FavoriteList'
+import DataDeclaration from '@/components/DataDeclaration'
 
 import type { MantineTheme } from '@mantine/core'
 import type { GeocodingObject } from '@/types'
@@ -103,9 +103,9 @@ function GeocodingSearch() {
         </Menu.Dropdown>
       </Menu>
 
-      <MemorizedFavoriteList />
+      <FavoriteList />
 
-      <MemorizedDataDeclaration />
+      <DataDeclaration />
     </Box>
   )
 }

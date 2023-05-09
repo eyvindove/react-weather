@@ -8,7 +8,9 @@ interface MantineBreadcrumbsProps {
   items: MantineBreadcrumbsItemObject[]
 }
 
-function MantineBreadcrumbs({ items }: MantineBreadcrumbsProps) {
+const MantineBreadcrumbs = memo(function MantineBreadcrumbs({
+  items,
+}: MantineBreadcrumbsProps) {
   const breadcrumbsItems = items.map(
     (item: MantineBreadcrumbsItemObject, index: number) => (
       <Group
@@ -34,8 +36,6 @@ function MantineBreadcrumbs({ items }: MantineBreadcrumbsProps) {
       <Breadcrumbs>{breadcrumbsItems}</Breadcrumbs>
     </>
   )
-}
+})
 
-const MemorizedMantineBreadcrumbs = memo(MantineBreadcrumbs)
-
-export default MemorizedMantineBreadcrumbs
+export default MantineBreadcrumbs

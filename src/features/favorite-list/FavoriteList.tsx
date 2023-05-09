@@ -7,7 +7,7 @@ import { MdRemoveCircleOutline } from 'react-icons/md'
 import type { MouseEvent } from 'react'
 import type { GeocodingObject } from '@/types'
 
-function FavoriteList() {
+const FavoriteList = memo(function FavoriteList() {
   const navigate = useNavigate()
 
   const [favoriteList, setFavoriteList] = useState([])
@@ -87,8 +87,6 @@ function FavoriteList() {
       )}
     </Stack>
   )
-}
+})
 
-const MemorizedFavoriteList = memo(FavoriteList)
-
-export default MemorizedFavoriteList
+export default FavoriteList

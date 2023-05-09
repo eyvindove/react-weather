@@ -17,7 +17,7 @@ interface CurrentWeatherActionsProps {
   refetch: () => void
 }
 
-function CurrentWeatherActions({
+const CurrentWeatherActions = memo(function CurrentWeatherActions({
   isFetching,
   dataUpdatedAt,
   refetch,
@@ -123,8 +123,6 @@ function CurrentWeatherActions({
       </Flex>
     </Group>
   )
-}
+})
 
-const MemorizedCurrentWeatherActions = memo(CurrentWeatherActions)
-
-export default MemorizedCurrentWeatherActions
+export default CurrentWeatherActions

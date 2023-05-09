@@ -1,5 +1,5 @@
-import { useEffect } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useEffect, useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import {
   Badge,
@@ -23,9 +23,10 @@ import {
   WiSunset,
   WiBarometer,
 } from 'react-icons/wi'
-import MemorizedMantineBreadcrumbs from '@/components/mantine/MantineBreadcrumbs'
-import MemorizedDataDeclaration from '@/components/DataDeclaration'
-import MemorizedCurrentWeatherActions from './CurrentWeatherActions'
+import { CityInfoContext } from '@/pages/CurrentWeatherPage'
+import MantineBreadcrumbs from '@/components/mantine/MantineBreadcrumbs'
+import DataDeclaration from '@/components/DataDeclaration'
+import CurrentWeatherActions from './CurrentWeatherActions'
 
 import type { CurrentObject, MantineBreadcrumbsItemObject } from '@/types'
 
@@ -41,12 +42,9 @@ const breadcrumbsConfig: MantineBreadcrumbsItemObject[] = [
 ]
 
 function CurrentWeather() {
+  const cityInfo = useContext(CityInfoContext)
+
   const navigate = useNavigate()
-  const location = useLocation()
-
-  // const [isFavorite, setIsFavorite] = useState(false)
-
-  const cityInfo = location.state?.cityInfo
 
   const { data, dataUpdatedAt, refetch, isFetching } = useQuery<
     CurrentObject,
@@ -133,7 +131,7 @@ function CurrentWeather() {
 
   return (
     <>
-      <MemorizedMantineBreadcrumbs items={breadcrumbsConfig} />
+      <MantineBreadcrumbs items={breadcrumbsConfig} />
 
       <Card
         shadow='sm'
@@ -206,14 +204,14 @@ function CurrentWeather() {
           </tbody>
         </Table>
 
-        <MemorizedCurrentWeatherActions
+        <CurrentWeatherActions
           isFetching={isFetching}
           dataUpdatedAt={dataUpdatedAt}
           refetch={refetch}
         />
       </Card>
 
-      <MemorizedDataDeclaration />
+      <DataDeclaration />
     </>
   )
 }
