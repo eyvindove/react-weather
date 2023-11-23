@@ -1,11 +1,10 @@
 import { Suspense } from 'react'
 import { Outlet } from 'react-router-dom'
 import { AppShell, Box } from '@mantine/core'
-import HeaderContainer from '@/components/header/HeaderContainer'
-import SuspenseFallback from '@/components/SuspenseFallback'
+import HeaderContainer from '@src/components/header/HeaderContainer'
+import SuspenseFallback from '@src/components/SuspenseFallback'
 
 function AppLayout() {
-  console.log('tpken', import.meta.env.VITE_OPEN_WEATHER_MAP_API_TOKEN)
   return (
     <AppShell
       padding='xs'

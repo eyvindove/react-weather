@@ -1,4 +1,4 @@
-export interface GeocodingObject {
+export interface Geocoding {
   name: string
   country: string
   lat: number
@@ -6,7 +6,7 @@ export interface GeocodingObject {
   local_names: { [key: string]: string }
 }
 
-export interface CurrentObject {
+export interface CurrentWeather {
   base: string
   clouds: { all: number }
   cod: number
@@ -46,12 +46,12 @@ export interface CurrentObject {
   }
 }
 
-export interface MantineBreadcrumbsItemObject {
+export interface MantineBreadcrumbsItem {
   title: string
   href: string
 }
 
-export interface ForecastListObject {
+export interface ForecastList {
   dt: number
   main: {
     temp: number
@@ -64,14 +64,12 @@ export interface ForecastListObject {
     humidity: number
     temp_kf: number
   }
-  weather: [
-    {
-      id: number
-      main: string
-      description: string
-      icon: string
-    }
-  ]
+  weather: {
+    id: number
+    main: string
+    description: string
+    icon: string
+  }[]
   clouds: {
     all: number
   }
@@ -91,7 +89,7 @@ export interface ForecastListObject {
   dt_txt: string
 }
 
-export interface ForecastCityObject {
+export interface ForecastCity {
   id: number
   name: string
   coord: {
@@ -105,10 +103,10 @@ export interface ForecastCityObject {
   sunset: number
 }
 
-export interface ForecastObject {
+export interface Forecast {
   cod: string
   message: number
   cnt: number
-  list: []
-  city: ForecastCityObject
+  list: ForecastList[]
+  city: ForecastCity
 }

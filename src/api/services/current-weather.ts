@@ -1,7 +1,7 @@
-import { axiosInstance } from '@/libs/axios'
-import { unit as units } from '@/utils/config'
+import { axiosInstance } from '@src/libs/axios'
+import { unit as units } from '@src/utils/config'
 
-import type { CurrentObject } from '@/types'
+import type { CurrentWeather } from '@src/types'
 
 type GetCurrentWeatherParams = {
   lat: number
@@ -11,7 +11,7 @@ type GetCurrentWeatherParams = {
 export const GetCurrentWeather = ({
   lat,
   lon,
-}: GetCurrentWeatherParams): Promise<CurrentObject> =>
+}: GetCurrentWeatherParams): Promise<CurrentWeather> =>
   axiosInstance({
     method: 'get',
     url: '/data/2.5/weather',

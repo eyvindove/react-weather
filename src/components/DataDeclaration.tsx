@@ -1,7 +1,6 @@
-import { memo } from 'react'
 import { Anchor, Center, Text } from '@mantine/core'
 
-const DataDeclaration = memo(function DataDeclaration() {
+function DataDeclaration() {
   return (
     <Center>
       <Text
@@ -21,6 +20,6 @@ const DataDeclaration = memo(function DataDeclaration() {
       </Text>
     </Center>
   )
-})
+}
 
 export default DataDeclaration

@@ -1,4 +1,4 @@
-import GeocodingSearch from '@/features/geocoding-search/GeocodingSearch'
+import GeocodingSearch from '@src/features/geocoding-search/GeocodingSearch'
 
 function HomePage() {
   return (

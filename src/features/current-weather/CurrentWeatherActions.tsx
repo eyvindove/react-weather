@@ -5,11 +5,11 @@ import {
   getLocaleDateTime,
   getLocalStorageByName,
   setLocalStorageByName,
-} from '@/utils/helpers'
+} from '@src/utils/helpers'
 import { MdAddCircleOutline } from 'react-icons/md'
 import { WiRefresh } from 'react-icons/wi'
 
-import type { GeocodingObject } from '@/types'
+import type { Geocoding } from '@src/types'
 
 interface CurrentWeatherActionsProps {
   isFetching: boolean
@@ -33,7 +33,7 @@ const CurrentWeatherActions = memo(function CurrentWeatherActions({
     if (!localStorageFavoriteList) return
 
     const hasFavorite = localStorageFavoriteList.find(
-      (item: GeocodingObject) => item.name === cityInfo.name
+      (item: Geocoding) => item.name === cityInfo.name
     )
 
     if (hasFavorite) {
@@ -47,7 +47,7 @@ const CurrentWeatherActions = memo(function CurrentWeatherActions({
     checkIsFavorite()
   }, [])
 
-  function addFavorite() {
+  function handleAddFavorite() {
     const localStorageFavoriteList = getLocalStorageByName('favorite')
 
     if (localStorageFavoriteList) {
@@ -59,7 +59,7 @@ const CurrentWeatherActions = memo(function CurrentWeatherActions({
     setIsFavorite(true)
   }
 
-  function removeFavorite() {
+  function handleRemoveFavorite() {
     const localStorageFavoriteList = getLocalStorageByName('favorite')
 
     if (!localStorageFavoriteList) return
@@ -67,7 +67,7 @@ const CurrentWeatherActions = memo(function CurrentWeatherActions({
     setLocalStorageByName(
       'favorite',
       localStorageFavoriteList.filter(
-        (favorite: GeocodingObject) => favorite.name !== cityInfo.name
+        (favorite: Geocoding) => favorite.name !== cityInfo.name
       )
     )
     setIsFavorite(false)
@@ -83,7 +83,7 @@ const CurrentWeatherActions = memo(function CurrentWeatherActions({
           size='sm'
           color='teal'
           compact
-          onClick={removeFavorite}
+          onClick={handleRemoveFavorite}
         >
           Favorite
         </Button>
@@ -94,7 +94,7 @@ const CurrentWeatherActions = memo(function CurrentWeatherActions({
           color='teal'
           compact
           leftIcon={<MdAddCircleOutline />}
-          onClick={addFavorite}
+          onClick={handleAddFavorite}
         >
           Favorite
         </Button>

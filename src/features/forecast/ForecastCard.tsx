@@ -1,8 +1,8 @@
 import { useContext } from 'react'
 import { Badge, Card, Stack, Text } from '@mantine/core'
 import { useQuery } from '@tanstack/react-query'
-import { GetForecast } from './services'
-import { CityInfoContext } from '@/pages/CurrentWeatherPage'
+import { GetForecast } from '@src/api'
+import { CityInfoContext } from '@src/pages/CurrentWeatherPage'
 import {
   ResponsiveContainer,
   CartesianGrid,
@@ -14,14 +14,14 @@ import {
   Tooltip,
   Legend,
 } from 'recharts'
-import { getLocaleTime } from '@/utils/helpers'
+import { getLocaleTime } from '@src/utils/helpers'
 
-import type { ForecastObject, ForecastListObject } from '@/types'
+import type { Forecast, ForecastList } from '@src/types'
 
-function Forecast() {
+function ForecastCard() {
   const cityInfo = useContext(CityInfoContext)
 
-  const { data } = useQuery<ForecastObject, Error>({
+  const { data } = useQuery<Forecast, Error>({
     queryKey: ['forecast', cityInfo],
     queryFn: async () =>
       await GetForecast({
@@ -31,14 +31,14 @@ function Forecast() {
     enabled: !!cityInfo,
   })
 
-  const chartTemperatureData = data?.list.map((item: ForecastListObject) => ({
+  const chartTemperatureData = data?.list.map((item: ForecastList) => ({
     time: getLocaleTime(item.dt * 1000),
     temp: item.main.temp,
     tempRange: [item.main.temp_max, item.main.temp_min],
     icon: item.weather[0].icon,
   }))
 
-  const chartHumidityData = data?.list.map((item: ForecastListObject) => ({
+  const chartHumidityData = data?.list.map((item: ForecastList) => ({
     time: getLocaleTime(item.dt * 1000),
     humidity: item.main.humidity,
   }))
@@ -144,4 +144,4 @@ function Forecast() {
   )
 }
 
-export default Forecast
+export default ForecastCard

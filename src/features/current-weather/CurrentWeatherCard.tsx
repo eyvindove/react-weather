@@ -13,8 +13,8 @@ import {
   rem,
 } from '@mantine/core'
 import { notifications } from '@mantine/notifications'
-import { GetCurrentWeather } from './services'
-import { getLocaleTime } from '@/utils/helpers'
+import { GetCurrentWeather } from '@src/api'
+import { getLocaleTime } from '@src/utils/helpers'
 import { IconContext } from 'react-icons'
 import {
   WiThermometer,
@@ -23,14 +23,14 @@ import {
   WiSunset,
   WiBarometer,
 } from 'react-icons/wi'
-import { CityInfoContext } from '@/pages/CurrentWeatherPage'
-import MantineBreadcrumbs from '@/components/mantine/MantineBreadcrumbs'
-import DataDeclaration from '@/components/DataDeclaration'
+import { CityInfoContext } from '@src/pages/CurrentWeatherPage'
+import MantineBreadcrumbs from '@src/components/mantine/MantineBreadcrumbs'
+import DataDeclaration from '@src/components/DataDeclaration'
 import CurrentWeatherActions from './CurrentWeatherActions'
 
-import type { CurrentObject, MantineBreadcrumbsItemObject } from '@/types'
+import type { CurrentWeather, MantineBreadcrumbsItem } from '@src/types'
 
-const breadcrumbsConfig: MantineBreadcrumbsItemObject[] = [
+const breadcrumbsConfig: MantineBreadcrumbsItem[] = [
   {
     title: 'Home',
     href: '/',
@@ -41,13 +41,13 @@ const breadcrumbsConfig: MantineBreadcrumbsItemObject[] = [
   },
 ]
 
-function CurrentWeather() {
+function CurrentWeatherCard() {
   const cityInfo = useContext(CityInfoContext)
 
   const navigate = useNavigate()
 
   const { data, dataUpdatedAt, refetch, isFetching } = useQuery<
-    CurrentObject,
+    CurrentWeather,
     Error
   >({
     queryKey: ['current-weather', cityInfo],
@@ -216,4 +216,4 @@ function CurrentWeather() {
   )
 }
 
-export default CurrentWeather
+export default CurrentWeatherCard

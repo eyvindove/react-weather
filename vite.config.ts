@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [react(), splitVendorChunkPlugin()],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
+      '@src': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
   build: {

@@ -2,17 +2,17 @@ import { memo } from 'react'
 import { Breadcrumbs, Group, Text } from '@mantine/core'
 import { NavLink } from 'react-router-dom'
 
-import type { MantineBreadcrumbsItemObject } from '@/types'
+import type { MantineBreadcrumbsItem } from '@src/types'
 
 interface MantineBreadcrumbsProps {
-  items: MantineBreadcrumbsItemObject[]
+  items: MantineBreadcrumbsItem[]
 }
 
 const MantineBreadcrumbs = memo(function MantineBreadcrumbs({
   items,
 }: MantineBreadcrumbsProps) {
   const breadcrumbsItems = items.map(
-    (item: MantineBreadcrumbsItemObject, index: number) => (
+    (item: MantineBreadcrumbsItem, index: number) => (
       <Group
         key={index}
         my={8}

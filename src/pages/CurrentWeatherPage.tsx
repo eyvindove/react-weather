@@ -1,11 +1,11 @@
 import { createContext } from 'react'
 import { useLocation } from 'react-router-dom'
-import CurrentWeather from '@/features/current-weather/CurrentWeather'
-import Forecast from '@/features/forecast/Forecast'
+import CurrentWeatherCard from '@src/features/current-weather/CurrentWeatherCard'
+import ForecastCard from '@src/features/forecast/ForecastCard'
 
-import type { GeocodingObject } from '@/types'
+import type { Geocoding } from '@src/types'
 
-export const CityInfoContext = createContext<GeocodingObject>({
+export const CityInfoContext = createContext<Geocoding>({
   name: '',
   country: '',
   lat: -1,
@@ -19,8 +19,8 @@ function CurrentWeatherPage() {
 
   return (
     <CityInfoContext.Provider value={cityInfo}>
-      <CurrentWeather />
-      <Forecast />
+      <CurrentWeatherCard />
+      <ForecastCard />
     </CityInfoContext.Provider>
   )
 }

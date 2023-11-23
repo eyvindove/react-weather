@@ -4,15 +4,15 @@ import { Box, CloseButton, TextInput, Menu, Loader, rem } from '@mantine/core'
 import { useDebouncedValue } from '@mantine/hooks'
 import { notifications } from '@mantine/notifications'
 import { useQuery } from '@tanstack/react-query'
-import { GetDirectGeocoding } from './services'
+import { GetDirectGeocoding } from '@src/api'
 import { FcSearch } from 'react-icons/fc'
 import FavoriteList from '../favorite-list/FavoriteList'
-import DataDeclaration from '@/components/DataDeclaration'
+import DataDeclaration from '@src/components/DataDeclaration'
 
 import type { MantineTheme } from '@mantine/core'
-import type { GeocodingObject } from '@/types'
+import type { Geocoding } from '@src/types'
 
-const debounceDelay = 1000
+const DEBOUNCE_DELAY = 1000
 
 function GeocodingSearch() {
   const navigate = useNavigate()
@@ -20,9 +20,9 @@ function GeocodingSearch() {
   const inputRef = useRef<HTMLInputElement>(null)
 
   const [searchText, setSearchText] = useState('')
-  const [debouncedSearchText] = useDebouncedValue(searchText, debounceDelay)
+  const [debouncedSearchText] = useDebouncedValue(searchText, DEBOUNCE_DELAY)
 
-  const { data, isFetching } = useQuery<GeocodingObject[], Error>({
+  const { data, isFetching } = useQuery<Geocoding[], Error>({
     queryKey: ['geocoding', debouncedSearchText],
     queryFn: async () => {
       const response = await GetDirectGeocoding({
@@ -42,7 +42,7 @@ function GeocodingSearch() {
     enabled: !!debouncedSearchText.trim(),
   })
 
-  function menuOnClick(item: GeocodingObject) {
+  function handleMenuClick(item: Geocoding) {
     navigate('/current-weather', {
       state: {
         cityInfo: item,
@@ -73,7 +73,7 @@ function GeocodingSearch() {
     <Box sx={{ position: 'relative', marginTop: 16 }}>
       <TextInput
         ref={inputRef}
-        placeholder='Search a city name...'
+        placeholder='Search by city name...'
         icon={textInputIcon}
         rightSection={textInputRightSection}
         value={searchText}
@@ -92,10 +92,10 @@ function GeocodingSearch() {
         })}
       >
         <Menu.Dropdown>
-          {data?.map((item: GeocodingObject, index: number) => (
+          {data?.map((item: Geocoding, index: number) => (
             <Menu.Item
               key={`${item.country}-${item.name}-${index}`}
-              onClick={() => menuOnClick(item)}
+              onClick={() => handleMenuClick(item)}
             >
               {`${item.name} (${item.country})`}
             </Menu.Item>

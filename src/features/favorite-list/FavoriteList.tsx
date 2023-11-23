@@ -1,13 +1,16 @@
-import { useState, useEffect, memo } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button, Card, Center, Group, Stack, Text } from '@mantine/core'
-import { getLocalStorageByName, setLocalStorageByName } from '@/utils/helpers'
+import {
+  getLocalStorageByName,
+  setLocalStorageByName,
+} from '@src/utils/helpers'
 import { MdRemoveCircleOutline } from 'react-icons/md'
 
 import type { MouseEvent } from 'react'
-import type { GeocodingObject } from '@/types'
+import type { Geocoding } from '@src/types'
 
-const FavoriteList = memo(function FavoriteList() {
+function FavoriteList() {
   const navigate = useNavigate()
 
   const [favoriteList, setFavoriteList] = useState([])
@@ -20,7 +23,7 @@ const FavoriteList = memo(function FavoriteList() {
     setFavoriteList(localStorageFavoriteList)
   }
 
-  function cardOnClick(item: GeocodingObject) {
+  function handleCardClick(item: Geocoding) {
     navigate('/current-weather', {
       state: {
         cityInfo: item,
@@ -28,14 +31,14 @@ const FavoriteList = memo(function FavoriteList() {
     })
   }
 
-  function removeFavorite(
+  function handleRemoveFavorite(
     e: MouseEvent<HTMLButtonElement>,
-    favorite: GeocodingObject
+    favorite: Geocoding
   ) {
     e.stopPropagation()
 
     const _favoriteList = favoriteList.filter(
-      (item: GeocodingObject) => item.name !== favorite.name
+      (item: Geocoding) => item.name !== favorite.name
     )
 
     setFavoriteList(_favoriteList)
@@ -49,7 +52,7 @@ const FavoriteList = memo(function FavoriteList() {
   return (
     <Stack mt={32}>
       {favoriteList.length > 0 ? (
-        favoriteList.map((item: GeocodingObject) => (
+        favoriteList.map((item: Geocoding) => (
           <Card
             key={`${item.name}-${item.country}`}
             withBorder
@@ -60,7 +63,7 @@ const FavoriteList = memo(function FavoriteList() {
                 scale: '105%',
               },
             }}
-            onClick={() => cardOnClick(item)}
+            onClick={() => handleCardClick(item)}
           >
             <Group position='apart'>
               <Text>{`${item.name} (${item.country})`}</Text>
@@ -71,7 +74,7 @@ const FavoriteList = memo(function FavoriteList() {
                 color='orange'
                 compact
                 leftIcon={<MdRemoveCircleOutline />}
-                onClick={(e) => removeFavorite(e, item)}
+                onClick={(e) => handleRemoveFavorite(e, item)}
               >
                 Remove
               </Button>
@@ -87,6 +90,6 @@ const FavoriteList = memo(function FavoriteList() {
       )}
     </Stack>
   )
-})
+}
 
 export default FavoriteList

@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { RouterProvider } from 'react-router-dom'
-import { router } from '@/router'
+import { router } from '@src/router'
 import { MantineProvider, ColorSchemeProvider } from '@mantine/core'
 import { Notifications } from '@mantine/notifications'
 import { QueryClientProvider } from '@tanstack/react-query'
-import { queryClient } from '@/libs/tanstack-query'
+import { queryClient } from '@src/libs/tanstack-query'
 import ErrorBoundary from './features/ErrorBoundry'
-import '@/styles/index.css'
-import { theme } from '@/styles/mantine-theme'
+import '@src/styles/index.css'
+import { theme } from '@src/styles/mantine-theme'
 
 import type { ColorScheme } from '@mantine/core'
 

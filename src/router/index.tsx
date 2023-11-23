@@ -1,11 +1,11 @@
 import { lazy } from 'react'
 import { createBrowserRouter } from 'react-router-dom'
 
-import AppLayout from '@/layouts/AppLayout'
+import AppLayout from '@src/layouts/AppLayout'
 
-const HomePage = lazy(() => import('@/pages/HomePage'))
-const CurrentWeatherPage = lazy(() => import('@/pages/CurrentWeatherPage'))
-const NotFoundPage = lazy(() => import('@/pages/NotFoundPage'))
+const HomePage = lazy(() => import('@src/pages/HomePage'))
+const CurrentWeatherPage = lazy(() => import('@src/pages/CurrentWeatherPage'))
+const NotFoundPage = lazy(() => import('@src/pages/NotFoundPage'))
 
 export const router = createBrowserRouter([
   {

@@ -1,8 +1,7 @@
-import { memo } from 'react'
 import { Center, Header, Group } from '@mantine/core'
 import ColorThemeToggler from './ColorThemeToggler'
 
-const HeaderContainer = memo(function HeaderContainer() {
+function HeaderContainer() {
   return (
     <Header
       height={40}
@@ -18,6 +17,6 @@ const HeaderContainer = memo(function HeaderContainer() {
       </Group>
     </Header>
   )
-})
+}
 
 export default HeaderContainer

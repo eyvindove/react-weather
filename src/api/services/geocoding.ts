@@ -1,6 +1,6 @@
-import { axiosInstance } from '@/libs/axios'
+import { axiosInstance } from '@src/libs/axios'
 
-import type { GeocodingObject } from '@/types'
+import type { Geocoding } from '@src/types'
 
 type GetDirectGeocodingParams = {
   q: string
@@ -10,7 +10,7 @@ type GetDirectGeocodingParams = {
 export const GetDirectGeocoding = ({
   q,
   limit = 5,
-}: GetDirectGeocodingParams): Promise<GeocodingObject[]> =>
+}: GetDirectGeocodingParams): Promise<Geocoding[]> =>
   axiosInstance({
     method: 'get',
     url: '/geo/1.0/direct',

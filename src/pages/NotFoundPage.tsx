@@ -55,7 +55,7 @@ function NotFoundPage() {
 
   const navigate = useNavigate()
 
-  function backToHomePage() {
+  function handleBackToHomePage() {
     navigate('/', {
       replace: true,
     })
@@ -78,7 +78,7 @@ function NotFoundPage() {
         <Button
           variant='subtle'
           size='md'
-          onClick={backToHomePage}
+          onClick={handleBackToHomePage}
         >
           Take me back to home page
         </Button>

@@ -1,7 +1,7 @@
-import { axiosInstance } from '@/libs/axios'
-import { unit as units } from '@/utils/config'
+import { axiosInstance } from '@src/libs/axios'
+import { unit as units } from '@src/utils/config'
 
-import type { ForecastObject } from '@/types'
+import type { Forecast } from '@src/types'
 
 type GetForecastParams = {
   lat: number
@@ -11,7 +11,7 @@ type GetForecastParams = {
 export const GetForecast = ({
   lat,
   lon,
-}: GetForecastParams): Promise<ForecastObject> =>
+}: GetForecastParams): Promise<Forecast> =>
   axiosInstance({
     method: 'get',
     url: '/data/2.5/forecast',
