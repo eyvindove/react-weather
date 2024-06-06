@@ -1,36 +1,27 @@
-import { useState } from "react";
-import reactLogo from "@src/assets/react.svg";
-import viteLogo from "@public/vite.svg";
-import "./App.css";
+import { ColorSchemeScript, MantineProvider } from "@mantine/core";
+import { Notifications } from "@mantine/notifications";
+import { RouterProvider } from "react-router-dom";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { queryClient } from "@src/libs/tanstack-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { theme } from "@src/libs/mantine/mantine-theme";
+import { router } from "@src/router";
+
+import "@mantine/core/styles.css";
+import "@mantine/notifications/styles.css";
+import "@mantine/charts/styles.css";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button
-          type="button"
-          onClick={() => setCount((currentCount) => currentCount + 1)}
-        >
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <ColorSchemeScript defaultColorScheme="dark" />
+      <MantineProvider theme={theme} defaultColorScheme="dark">
+        <QueryClientProvider client={queryClient}>
+          <Notifications />
+          <RouterProvider router={router} />
+          <ReactQueryDevtools initialIsOpen={false} />
+        </QueryClientProvider>
+      </MantineProvider>
     </>
   );
 }

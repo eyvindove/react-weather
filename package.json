@@ -1,5 +1,5 @@
 {
-  "name": "rwa",
+  "name": "react-weather",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -13,10 +13,22 @@
     "prepare": "husky && husky install"
   },
   "dependencies": {
+    "@mantine/charts": "^7.10.1",
+    "@mantine/core": "^7.10.1",
+    "@mantine/hooks": "^7.10.1",
+    "@mantine/notifications": "^7.10.1",
+    "@tabler/icons-react": "^3.5.0",
+    "@tanstack/react-query": "^5.40.1",
+    "@tanstack/react-query-devtools": "^5.40.1",
+    "axios": "^1.7.2",
+    "clsx": "^2.1.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.23.1",
+    "recharts": "2"
   },
   "devDependencies": {
+    "@tanstack/eslint-plugin-query": "^5.35.6",
     "@types/node": "^20.14.1",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
@@ -35,6 +47,9 @@
     "eslint-plugin-react-refresh": "^0.4.6",
     "husky": "^8.0.0",
     "lint-staged": "^15.2.5",
+    "postcss": "^8.4.38",
+    "postcss-preset-mantine": "^1.15.0",
+    "postcss-simple-vars": "^7.0.1",
     "prettier": "^3.3.0",
     "typescript": "^5.2.2",
     "vite": "^5.2.0"

@@ -7,7 +7,12 @@ module.exports = {
     "airbnb/hooks",
     "plugin:prettier/recommended",
   ],
-  ignorePatterns: ["dist", ".eslintrc.cjs", "vite.config.ts"],
+  ignorePatterns: [
+    "dist",
+    ".eslintrc.cjs",
+    "postcss.config.cjs",
+    "vite.config.ts",
+  ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     project: "./tsconfig.json",
@@ -18,7 +23,9 @@ module.exports = {
       "warn",
       { allowConstantExport: true },
     ],
-    "react/react-in-jsx-scope": "off",
+    "react/react-in-jsx-scope": ["off"],
+    "react-hooks/exhaustive-deps": ["warn"],
     "prettier/prettier": ["warn"],
+    "import/no-extraneous-dependencies": ["off"],
   },
 };
