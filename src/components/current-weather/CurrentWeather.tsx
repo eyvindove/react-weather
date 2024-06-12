@@ -90,7 +90,7 @@ export default function CurrentWeather() {
   ];
 
   return (
-    <Card>
+    <Card withBorder>
       <CardTitle title="Current Weather" />
 
       <Flex direction={{ base: "column", sm: "row" }} justify="space-between">

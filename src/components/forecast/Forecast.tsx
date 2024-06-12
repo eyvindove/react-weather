@@ -54,7 +54,7 @@ export default function Forecast() {
   }, []);
 
   return (
-    <Card>
+    <Card withBorder>
       <CardTitle title="Forecast" />
 
       <Flex direction="column" gap={32}>
