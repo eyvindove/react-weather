@@ -79,16 +79,18 @@ export default function GeocodingSearch() {
         />
       </Menu.Target>
 
-      <Menu.Dropdown>
-        {data?.map((item: Geocoding, index: number) => (
-          <Menu.Item
-            key={`${item.country}-${item.name}-${index * 1}`}
-            onClick={() => handleMenuClick(item)}
-          >
-            {`${item.name} (${item.country})`}
-          </Menu.Item>
-        ))}
-      </Menu.Dropdown>
+      {data && data.length > 0 && (
+        <Menu.Dropdown>
+          {data.map((item: Geocoding, index: number) => (
+            <Menu.Item
+              key={`${item.country}-${item.name}-${index * 1}`}
+              onClick={() => handleMenuClick(item)}
+            >
+              {`${item.name} (${item.country})`}
+            </Menu.Item>
+          ))}
+        </Menu.Dropdown>
+      )}
     </Menu>
   );
 }
